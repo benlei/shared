@@ -25,6 +25,6 @@ if [[ !${PUBLIC_KEY} ]]; then
 fi
 
 for region in $(aws ec2 describe-regions --region us-west-1 --output text | awk '{ print $3 }'); do
-  aws ec2 import-key-pair --key-name ${NAME} --public-key-material "$(cat $1)" --region ${region}
+  aws ec2 import-key-pair --key-name ${NAME} --public-key-material "${PUBLIC_KEY}" --region ${region}
 done
 
