@@ -6,9 +6,11 @@ function __gitstashpullstashpop() {
     [[ ${status} == *"Changes to be committed"* ]]; then
     git stash -u
     git pull
+    git fetch -p
     git stash pop
   else
     git pull
+    git fetch -p
   fi
 }
 
@@ -50,6 +52,11 @@ function __contextual_c() {
   fi
 }
 
+function git_create_branch() {
+  git checkout -b $1
+  git push -u origin $1
+}
+
 
 alias gradlew=./gradlew
 alias g=__gitStatusOrGit
@@ -81,3 +88,4 @@ alias stash=git\ stash
 alias ggrep=git\ grep
 alias show-branch=git\ show-branch
 alias master=git\ checkout\ master
+alias create-branch=git_create_branch
