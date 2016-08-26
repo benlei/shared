@@ -57,6 +57,16 @@ function git_create_branch() {
   git push -u origin $1
 }
 
+function git_delete_branch() {
+  git branch -d $1
+  git push origin --delete $1
+}
+
+function git_pull_master() {
+  git fetch origin
+  git merge origin/master
+}
+
 
 alias gradlew=./gradlew
 alias g=__gitStatusOrGit
@@ -89,3 +99,5 @@ alias ggrep=git\ grep
 alias show-branch=git\ show-branch
 alias master=git\ checkout\ master
 alias create-branch=git_create_branch
+alias delete-branch=git_delete_branch
+alias pm=git_pull_master
