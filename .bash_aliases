@@ -44,7 +44,7 @@ function __contextual_diff() {
 
 function __contextual_c() {
   if [[ $# -eq 0 ]]; then
-    cd ~/dns/provisioning
+    cd ${PROJECT_PATH}
   elif [[ $1 == "." ]]; then
     git commit .
   else
