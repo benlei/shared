@@ -101,3 +101,4 @@ alias master=git\ checkout\ master
 alias create-branch=git_create_branch
 alias delete-branch=git_delete_branch
 alias pm=git_pull_master
+alias revert=git\ revert
