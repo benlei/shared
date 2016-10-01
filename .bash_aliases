@@ -67,12 +67,20 @@ function git_pull_master() {
   git merge origin/master
 }
 
+function __contextual_build() {
+  if [[ -f ./mvnw ]]; then
+    ./mvnw clean install
+  else
+   ./gradlew clean build
+  fi
+}
 
 alias gradlew=./gradlew
+alias mvnw=./mvnw
 alias g=__gitStatusOrGit
 alias p=__gitstashpullstashpop
 alias c=__contextual_c
-alias b="./gradlew clean build"
+alias b=__contextual_build
 alias r=git\ reset\ --hard\ HEAD
 
 alias init=git\ init
