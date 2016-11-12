@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=8033
+Type=Application
+Name=PlantUML
+Icon=/home/blei/.local/share/applications/plantuml.png
+Exec="/usr/bin/plantuml" %f
+Categories=Development;
+Terminal=false
