@@ -18,13 +18,13 @@ if [[ $EXT != "pem" ]]; then
   exit 1
 fi
 
-PUBLIC_KEY="$(ssh-keygen -y -f $1)"
-if [[ !${PUBLIC_KEY} ]]; then
+PUBLIC_KEY=$(ssh-keygen -yf $1)
+if [[ -z ${PUBLIC_KEY} ]]; then
   echo "Could not generate public key from $1"
   exit 1
 fi
 
 for region in $(aws ec2 describe-regions --region us-west-1 --output text | awk '{ print $3 }'); do
-  aws ec2 import-key-pair --key-name ${NAME} --public-key-material "${PUBLIC_KEY}" --region ${region}
+  aws ec2 import-key-pair --key-name ${NAME} --public-key-material "${PUBLIC_KEY}" --region ${region} 1>/dev/null && echo Imported ${NAME} to ${region} || echo Could not import ${NAME} to ${region}
 done
 
