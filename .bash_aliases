@@ -67,6 +67,15 @@ function git_pull_master() {
   git merge origin/master
 }
 
+function __contextual_build_mgr() {
+   if [[ -f ./mvnw ]]; then
+    ./mvnw $@
+  else
+   ./gradlew $@
+  fi
+ 
+}
+
 function __contextual_build() {
   if [[ -f ./mvnw ]]; then
     ./mvnw clean install
@@ -110,3 +119,8 @@ alias create-branch=git_create_branch
 alias delete-branch=git_delete_branch
 alias pm=git_pull_master
 alias revert=git\ revert
+
+export COMMON_PEM_PATH=~/.ssh/blei.pem
+alias .scp=scp\ -i\ "${COMMON_PEM_PATH}"
+alias .ssh=ssh\ -i\ "${COMMON_PEM_PATH}"
+alias m=__contextual_build_mgr
