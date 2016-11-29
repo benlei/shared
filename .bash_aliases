@@ -23,23 +23,23 @@ function __gitStatusOrGit() {
 }
 
 function __contextual_rm() {
-  git rm -f $@ 2>/dev/null || rm -f $@
+  git rm -f $@ 2>/dev/null || /bin/rm -f $@
 }
 
 function __contextual_mv() {
-  mv -f $@ 2>/dev/null || mv -f $@
+  git mv -f $@ 2>/dev/null || /bin/mv -f $@
 }
 
 function __contextual_reset() {
-  git status 2>/dev/null >/dev/null && git reset $@ || reset $@
+  git status 2>/dev/null >/dev/null && git reset $@ || /usr/bin/reset $@
 }
 
 function __contextual_rebase() {
-  git status 2>/dev/null >/dev/null && git rebase $@ || rebase $@
+  git status 2>/dev/null >/dev/null && git rebase $@ || /usr/bin/rebase $@
 }
 
 function __contextual_diff() {
-  git status 2>/dev/null >/dev/null && git diff $@ || diff $@
+  git status 2>/dev/null >/dev/null && git diff $@ || /usr/bin/diff $@
 }
 
 function __contextual_c() {
