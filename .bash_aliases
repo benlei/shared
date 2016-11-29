@@ -70,10 +70,11 @@ function git_pull_master() {
 function __contextual_build_mgr() {
    if [[ -f ./mvnw ]]; then
     ./mvnw $@
-  else
-   ./gradlew $@
+  elif [[ -f ./gradlew ]]; then
+    ./gradlew $@
+  elif [[ -f ./package.json ]]; then
+    npm $@
   fi
- 
 }
 
 function __contextual_build() {
@@ -123,4 +124,4 @@ alias revert=git\ revert
 export COMMON_PEM_PATH=~/.ssh/blei.pem
 alias .scp=scp\ -i\ "${COMMON_PEM_PATH}"
 alias .ssh=ssh\ -i\ "${COMMON_PEM_PATH}"
-alias m=__contextual_build_mgr
+alias @=__contextual_build_mgr
