@@ -1,4 +1,5 @@
 SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+EXTRA_BASHRC=$SCRIPTPATH/.bashrc_$(hostname)
 
 function __gitstashpullstashpop() {
   status=$(git status)
@@ -123,12 +124,11 @@ alias delete-branch=git_delete_branch
 alias pm=git_pull_master
 alias revert=git\ revert
 
-export COMMON_PEM_PATH=~/.ssh/blei.pem
 alias .scp=scp\ -i\ "${COMMON_PEM_PATH}"
 alias .ssh=ssh\ -i\ "${COMMON_PEM_PATH}"
 alias @=__contextual_build_mgr
 
 
-for rcs in $SCRIPTPATH/.bashrc_*; do
-  . $rcs
-done
+if [[ -f $EXTRA_BASHRC ]]; then
+  . $EXTRA_BASHRC
+fi
