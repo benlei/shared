@@ -9,4 +9,3 @@ function docker_nginx() {
 
 alias dncli=docker_dncli
 alias dnginx=docker_nginx
-

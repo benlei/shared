@@ -1,3 +1,5 @@
+SCRIPTPATH=$(cd $(dirname $0); pwd -P)
+
 function __gitstashpullstashpop() {
   status=$(git status)
 
@@ -125,3 +127,8 @@ export COMMON_PEM_PATH=~/.ssh/blei.pem
 alias .scp=scp\ -i\ "${COMMON_PEM_PATH}"
 alias .ssh=ssh\ -i\ "${COMMON_PEM_PATH}"
 alias @=__contextual_build_mgr
+
+
+for rcs in $SCRIPTPATH/.bashrc_*; do
+  . $rcs
+done
