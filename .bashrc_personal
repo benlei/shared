@@ -2,10 +2,4 @@ function docker_dncli() {
   docker run --rm --network container:mysql -v ${HOME}:${HOME} -u $(id -u):$(id -g) -w ${PWD} blei/dncli $@
 }
 
-function docker_nginx() {
-  docker rm -fv nginx 2>/dev/null
-  docker run --rm --name nginx -v $1:/usr/share/nginx/html:ro -v /home/blei/mnt/etc/nginx/conf.d:/etc/nginx/conf.d -p 8080:80 nginx
-}
-
 alias dncli=docker_dncli
-alias dnginx=docker_nginx
