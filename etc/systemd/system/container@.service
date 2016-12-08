@@ -1,7 +1,8 @@
 # Example docker container service for Fedora systems
 # ref: https://goldmann.pl/blog/2014/07/30/running-docker-containers-as-systemd-services/
+# ref: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sect-Managing_Services_with_systemd-Unit_Files.html
 [Unit]
-Description=My Service
+Description=Container Service Instance
 Requires=docker.service
 After=docker.service
 
@@ -9,8 +10,8 @@ After=docker.service
 User=user
 Restart=on-failure
 RestartSec=10
-ExecStart=/usr/bin/docker start -a myContainer
-ExecStop=/usr/bin/docker stop -t 2 myContainer
+ExecStart=/usr/bin/docker start -a %i
+ExecStop=/usr/bin/docker stop -t 2 %i
 
 [Install]
 WantedBy=multi-user.target
