@@ -1,4 +1,4 @@
-SCRIPTPATH=$(cd $(dirname $0); pwd -P)
+SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 function __gitstashpullstashpop() {
   status=$(git status)
