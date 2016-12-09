@@ -2,11 +2,5 @@ function docker_dncli() {
   docker run --rm --network container:mysql -v ${HOME}:${HOME} -u $(id -u):$(id -g) -w ${PWD} blei/dncli $@
 }
 
-function docker_node() {
-  docker run --rm -it -v ${HOME}:${HOME} -u $(id -u):$(id -g) -w ${PWD} -p 3000:3000 node:7-alpine $@
-}
-
 alias dncli=docker_dncli
-alias node=docker_node\ node
-alias npm=docker_node\ npm
 
