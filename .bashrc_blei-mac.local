@@ -1,14 +1,11 @@
 # OsX Laptop Aliases; mostly grabbed from https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
 
-## Colorize the ls output ##
-alias ls='ls --color=auto'
- 
 ## Use a long listing format ##
-alias ll='ls -la' 
+alias ls='ls -G'
+alias ll='ls -l' 
+alias la='ls -a' 
+alias lla='ls -la' 
  
-## Show hidden files ##
-alias l.='ls -d .* --color=auto'
-
 ## a quick way to get out of current directory ##
 alias ..='cd ..' 
 alias ...='cd ../../../' 
