@@ -3,5 +3,5 @@ function docker_dncli() {
 }
 
 alias dncli=docker_dncli
-
 alias dnf=sudo\ dnf
+
