@@ -144,11 +144,11 @@ alias grep=grep\ --color=auto
 alias egrep=egrep\ --color=auto
 alias fgrep=fgrep\ --color=auto
 
-
 # handy short cuts #
 alias h=history
 alias j=jobs\ -l
 
+alias ports=netstat\ -tulanp
 
 if [[ -f $EXTRA_BASHRC ]]; then
   . $EXTRA_BASHRC
