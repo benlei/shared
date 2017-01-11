@@ -25,14 +25,6 @@ function __gitStatusOrGit() {
   fi
 }
 
-function __contextual_rm() {
-  git rm -f $@ 2>/dev/null || /bin/rm -f $@
-}
-
-function __contextual_mv() {
-  git mv -f $@ 2>/dev/null || /bin/mv -f $@
-}
-
 function __contextual_reset() {
   git status 2>/dev/null >/dev/null && git reset $@ || /usr/bin/reset $@
 }
@@ -100,8 +92,6 @@ alias init=git\ init
 alias clone=git\ clone
 alias add=git\ add
 alias reset=__contextual_reset
-alias rm=__contextual_rm
-alias mv=__contextual_mv
 alias log=git\ log
 alias show=git\ show
 alias branch=git\ branch
