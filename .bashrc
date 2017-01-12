@@ -114,8 +114,8 @@ alias delete-branch=git_delete_branch
 alias pm=git_pull_master
 alias revert=git\ revert
 
-alias .scp=scp\ -i\ "${COMMON_PEM_PATH}"
-alias .ssh=ssh\ -i\ "${COMMON_PEM_PATH}"
+alias .scp=scp\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
+alias .ssh=ssh\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
 alias @=__contextual_build_mgr
 
 
