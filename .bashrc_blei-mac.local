@@ -1,5 +1,10 @@
 # OsX Laptop Aliases; mostly grabbed from https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
 
+ffmpeg() {
+  docker run --rm -v ${PWD}:/tmp/ffmpeg opencoconut/ffmpeg $@
+}
+
+
 ## Use a long listing format ##
 alias l=ls\ -G
 alias ls=ls\ -G
@@ -7,3 +12,4 @@ alias ll=ls\ -l
 alias la=ls\ -a 
 alias lla=ls\ -la 
  
+

@@ -1,7 +1,7 @@
 SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EXTRA_BASHRC=$SCRIPTPATH/.bashrc_$(hostname)
 
-function __gitstashpullstashpop() {
+p() {
   status=$(git status)
 
   if [[ ${status} == *"Changes to be committed"* ]] ||
@@ -17,7 +17,7 @@ function __gitstashpullstashpop() {
   fi
 }
 
-function __gitStatusOrGit() {
+g() {
   if [[ $# -eq 0 ]]; then
     git status
   else
@@ -25,19 +25,15 @@ function __gitStatusOrGit() {
   fi
 }
 
-function __contextual_reset() {
-  git status 2>/dev/null >/dev/null && git reset $@ || /usr/bin/reset $@
+b() {
+  if [[ -f ./mvnw ]]; then
+    ./mvnw clean install
+  else
+   ./gradlew clean build
+  fi
 }
 
-function __contextual_rebase() {
-  git status 2>/dev/null >/dev/null && git rebase $@ || /usr/bin/rebase $@
-}
-
-function __contextual_diff() {
-  git status 2>/dev/null >/dev/null && git diff $@ || /usr/bin/diff $@
-}
-
-function __contextual_c() {
+c() {
   if [[ $# -eq 0 ]]; then
     cd ${PROJECT_PATH}
   elif [[ $1 == "." ]]; then
@@ -47,59 +43,46 @@ function __contextual_c() {
   fi
 }
 
-function git_create_branch() {
+reset() {
+  git status 2>/dev/null >/dev/null && git reset $@ || /usr/bin/reset $@
+}
+
+rebase() {
+  git status 2>/dev/null >/dev/null && git rebase $@ || /usr/bin/rebase $@
+}
+
+diff() {
+  git status 2>/dev/null >/dev/null && git diff $@ || /usr/bin/diff $@
+}
+
+create-branch() {
   git checkout -b $1
   git push -u origin $1
 }
 
-function git_delete_branch() {
+delete-branch() {
   git branch -d $1
   git push origin --delete $1
 }
 
-function git_pull_master() {
+function pull-master() {
   git fetch origin
   git merge origin/master
 }
 
-function __contextual_build_mgr() {
-   if [[ -f ./mvnw ]]; then
-    ./mvnw $@
-  elif [[ -f ./gradlew ]]; then
-    ./gradlew $@
-  elif [[ -f ./package.json ]]; then
-    npm $@
-  fi
-}
-
-function __contextual_build() {
-  if [[ -f ./mvnw ]]; then
-    ./mvnw clean install
-  else
-   ./gradlew clean build
-  fi
-}
-
 alias gradlew=./gradlew
 alias mvnw=./mvnw
-alias g=__gitStatusOrGit
-alias p=__gitstashpullstashpop
-alias c=__contextual_c
-alias b=__contextual_build
 alias r=git\ reset\ --hard\ HEAD
 
 alias init=git\ init
 alias clone=git\ clone
 alias add=git\ add
-alias reset=__contextual_reset
 alias log=git\ log
 alias show=git\ show
 alias branch=git\ branch
 alias checkout=git\ checkout
 alias commit=git\ commit
-alias diff=__contextual_diff
 alias merge=git\ merge
-alias rebase=__contextual_rebase
 alias tag=git\ tag
 alias fetch=git\ fetch
 alias pull=git\ pull
@@ -109,14 +92,10 @@ alias stash=git\ stash
 alias ggrep=git\ grep
 alias show-branch=git\ show-branch
 alias master=git\ checkout\ master
-alias create-branch=git_create_branch
-alias delete-branch=git_delete_branch
-alias pm=git_pull_master
 alias revert=git\ revert
 
 alias .scp=scp\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
 alias .ssh=ssh\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
-alias @=__contextual_build_mgr
 
 
 alias l=ls
