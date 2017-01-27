@@ -99,6 +99,8 @@ alias .ssh=ssh\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
 
 
 alias l=ls
+alias la=ls\ -a
+alias lla=ls\ -la
 
 ## a quick way to get out of current directory ##
 alias ..=cd\ .. 
