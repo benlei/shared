@@ -104,9 +104,8 @@ alias lla=ls\ -la
 
 ## a quick way to get out of current directory ##
 alias ..=cd\ .. 
-alias ...=cd\ ../../..   
-alias ....=cd\ ../../../..   
-alias .....=cd\ ../../../..   
+alias .2=cd\ ../..
+alias .3=cd\ ../../..
 alias .4=cd\ ../../../..
 alias .5=cd\ ../../../../..
 
@@ -125,3 +124,4 @@ if [[ -f $EXTRA_BASHRC ]]; then
   . $EXTRA_BASHRC
 fi
 
+export PATH=$PATH:$HOME/bin

@@ -1,0 +1,6 @@
+dncli() {
+  docker run --rm --network container:mysql -v ${HOME}:${HOME} -u $(id -u):$(id -g) -w ${PWD} blei/dncli $@
+}
+
+alias dnf=sudo\ dnf
+
