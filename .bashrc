@@ -39,7 +39,7 @@ c() {
   elif [[ $1 == "." ]]; then
     git commit .
   else
-    git checkout $@
+    cd ${PROJECT_PATH}/$1
   fi
 }
 
