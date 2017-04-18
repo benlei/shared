@@ -8,17 +8,30 @@
 set timeout 10
 set log_user 0
 
+stty -echo
+send_user -- "Password: "
+expect_user -re "(.*)\n"
+send_user "\n"
+stty echo
+set pass $expect_out(1,string)
+
 spawn VIPAccess
 expect -re ......
 
 set secCode $expect_out(buffer)
 spawn ssh $env(JUMPHOST)
+
 expect {
   "SecurityCode: " {
     send "$secCode\r" 
   }
+}
+
+expect {
+  "Password: " {
+    send "$pass\r"
+  }
 } 
-          
-          
+
 interact
 
