@@ -1,19 +1,21 @@
 #!/usr/bin/expect -f
-# 
-# two-factor-ssh.sh
+#================================================================================
+# jump
 # 
 # Performs a two-factor SSH authentication.
-# 
 #================================================================================
 
 set timeout 10
 set log_user 0
 
+spawn -noecho VIPAccess
+
+# run a second time as first time may be a dud
 spawn VIPAccess
 expect -re ......
 
 set secCode $expect_out(buffer)
-spawn ssh $JUMPHOST
+spawn ssh $env(JUMPHOST)
 expect {
   "SecurityCode: " {
     send "$secCode\r" 
