@@ -9,9 +9,6 @@ set timeout 10
 set log_user 0
 
 spawn VIPAccess
-
-# run a second time as first time may be a dud
-spawn VIPAccess
 expect -re ......
 
 set secCode $expect_out(buffer)
