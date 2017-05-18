@@ -8,7 +8,9 @@ ffmpeg() {
 jumpproxy() {
   # -f = bg
   # -N = no command
-  ssh -f -N -D $1 $JUMPHOST
+  # $1 = the local port which forwards to $2, which is:
+  # $2 = the ssh server; eg blei@foo.com
+  ssh -f -N -D $1 $2
 }
 
 
