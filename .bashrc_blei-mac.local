@@ -4,6 +4,10 @@ ffmpeg() {
   docker run --rm -v ${PWD}:/tmp/ffmpeg opencoconut/ffmpeg $@
 }
 
+# socks dynamic proxy
+jumpproxy() {
+  ssh -f -N -D $1 $JUMPHOST
+}
 
 ## Use a long listing format ##
 alias l=ls\ -G
