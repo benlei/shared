@@ -6,7 +6,16 @@ ffmpeg() {
 
 # socks dynamic proxy
 jumpproxy() {
+  # -f = bg
+  # -N = no command
   ssh -f -N -D $1 $JUMPHOST
+}
+
+
+tunnel() {
+  # $1 = the ssh login + server; eg blei@foo.com
+  # $2 = the socket connection; eg local_port:remote_port (80:80)
+  ssh -f $1 -L $2 -N
 }
 
 ## Use a long listing format ##
