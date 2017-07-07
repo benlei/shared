@@ -26,3 +26,7 @@ alias ls=ls\ -G
 alias ll=ls\ -l 
  
 
+svntag() {
+  svn up
+  svn info --xml | grep date | sed 's#.*>\(....\)-\(..\)-\(..\)T\(..\):\(..\):\(..\).*<.*#\1\2\3-\4\5\6#' 
+}
