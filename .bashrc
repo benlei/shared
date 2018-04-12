@@ -119,9 +119,11 @@ alias h=history
 alias j=jobs\ -l
 
 alias ports=netstat\ -tulanp
+alias guid="uuidgen | tr '[:upper:]' '[:lower:]' | sed 's/-//g'"
 
 if [[ -f $EXTRA_BASHRC ]]; then
   . $EXTRA_BASHRC
 fi
 
 export PATH=$PATH:$HOME/bin
+
