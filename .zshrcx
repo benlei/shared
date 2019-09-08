@@ -1,0 +1,56 @@
+alias l=ls\ -G
+alias ls=ls\ -G
+alias ll=ls\ -l
+
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep=grep\ --color=auto
+alias egrep=egrep\ --color=auto
+alias fgrep=fgrep\ --color=auto
+alias .scp=scp\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
+alias .ssh=ssh\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
+
+alias doc=docker
+alias add=git\ add
+alias commit=git\ commit
+alias checkout=git\ checkout
+alias pull=git\ pull
+alias push=git\ push
+alias p=pull
+alias g=git\ status
+alias branch=git\ branch
+alias stash=git\ stash
+alias stashall=git\ stash\ --all
+alias reset=git\ reset
+alias pop=git\ stash\ pop
+alias gs=git\ status
+alias co=git\ checkout
+
+alias ..=cd\ ..
+alias .2=cd\ ../..
+alias .3=cd\ ../../..
+alias .4=cd\ ../../../..
+alias .5=cd\ ../../../../..
+alias guid="uuidgen | tr '[:upper:]' '[:lower:]' | sed 's/-//g'"
+
+
+alias .gb=./gradlew\ build
+alias .gcb=./gradlew\ clean\ build
+alias .g=./gradlew
+
+function nvmdefault() {
+  nvm install $1 && nvm alias default $1
+}
+
+function prune_branches() {
+    git fetch --prune && git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d 2>/dev/null
+}
+
+function create-branch() {
+  git checkout -b $1
+  git push -u origin $1
+}
+
+function delete-branch() {
+  git branch -d $1
+  git push origin --delete $1
+}
