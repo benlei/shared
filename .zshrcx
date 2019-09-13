@@ -58,7 +58,16 @@ function delete-branch() {
 }
 
 function select-branch() {
-  select branch in $(git branch -l);
+  if [[ $1 == '-r' ]];
+  then
+    echo Fetching remote branches...
+    branches=$(git branch -r | grep -v "origin/HEAD" | sed -e 's#^ *origin/##')
+  else
+    echo Fetching local branches...
+    branches=$(git branch -l | sed 's#^[ \*]*##g')
+  fi
+
+  select branch in `echo $branches`;
   do
     git checkout $branch
     break
