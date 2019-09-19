@@ -21,6 +21,7 @@ alias p=pull
 alias g=git\ status
 alias branch=git\ branch
 alias stash=git\ stash
+alias merge=git\ merge
 alias stashall=git\ stash\ --all
 alias reset=git\ reset
 alias pop=git\ stash\ pop
