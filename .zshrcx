@@ -73,3 +73,18 @@ function select-branch() {
     break
   done
 }
+
+function rename-branch() {
+  CURR_BRANCH=$(git symbolic-ref --short HEAD)
+  NEW_BRANCH=$1
+  if [[ $# -eq 2 ]]; then
+    CURR_BRANCH=$1
+    NEW_BRANCH=$2
+    git branch -m $1 $2
+  else
+    git branch -m $1
+  fi
+
+  git push origin :$CURR_BRANCH $NEW_BRANCH
+} 
+
