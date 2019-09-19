@@ -86,6 +86,7 @@ function rename-branch() {
   fi
 
   git push origin :$CURR_BRANCH $NEW_BRANCH
-  git branch --unset-upstream
+  
+  # in case of the upstream unset message: https://stackoverflow.com/a/46521967/12075726
 } 
 
