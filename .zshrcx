@@ -9,9 +9,9 @@ alias fgrep=fgrep\ --color=auto
 alias .scp=scp\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
 alias .ssh=ssh\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
 
-alias doc=docker
-alias doc-exited=docker\ container\ ls\ -f\ 'status=exited'\ -f\ 'status=dead'\ -f\ 'status=created'
-alias doc-prune=docker\ system\ prune\ -af\ --volumes
+alias d=docker
+alias dexited=docker\ container\ ls\ -f\ 'status=exited'\ -f\ 'status=dead'\ -f\ 'status=created'
+alias dprune=docker\ system\ prune\ -af\ --volumes
 alias add=git\ add
 alias commit=git\ commit
 alias checkout=git\ checkout
@@ -21,6 +21,7 @@ alias p=pull
 alias g=git\ status
 alias branch=git\ branch
 alias stash=git\ stash
+alias merge=git\ merge
 alias stashall=git\ stash\ --all
 alias reset=git\ reset
 alias pop=git\ stash\ pop
@@ -73,3 +74,20 @@ function select-branch() {
     break
   done
 }
+
+function rename-branch() {
+  CURR_BRANCH=$(git symbolic-ref --short HEAD)
+  NEW_BRANCH=$1
+  if [[ $# -eq 2 ]]; then
+    CURR_BRANCH=$1
+    NEW_BRANCH=$2
+    git branch -m $1 $2
+  else
+    git branch -m $1
+  fi
+
+  git push origin :$CURR_BRANCH $NEW_BRANCH
+  
+  # in case of the upstream unset message: https://stackoverflow.com/a/46521967/12075726
+} 
+
