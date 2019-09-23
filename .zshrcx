@@ -86,8 +86,15 @@ function rename-branch() {
     git branch -m $1
   fi
 
-  git push origin :$CURR_BRANCH $NEW_BRANCH
-  
-  # in case of the upstream unset message: https://stackoverflow.com/a/46521967/12075726
+  #git push origin :$CURR_BRANCH $NEW_BRANCH
+
+  git push origin --delete $CURR_BRANCH
+  git push origin $NEW_BRANCH
+  git push origin -u $NEW_BRANCH
+
+  #PROJECT_PATH=$(git rev-parse --show-toplevel)
+  #rm -f $PROJECT_PATH/.git/refs/remote/origin/$NEW_BRANCH
+  #git fetch
+  #git branch --set-upstream-to=origin/$NEW_BRANCH
 } 
 
