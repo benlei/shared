@@ -30,6 +30,9 @@ alias pop=git\ stash\ pop
 alias gs=git\ status
 alias co=git\ checkout
 alias pgd=git\ rev-parse\ --show-toplevel
+alias .cd="cd \$(git rev-parse --show-toplevel)"
+alias master=git\ checkout\ master
+alias develop=git\ checkout\ develop
 
 alias ..=cd\ ..
 alias .1=cd\ ..
