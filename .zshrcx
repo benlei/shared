@@ -12,6 +12,8 @@ alias .ssh=ssh\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
 alias d=docker
 alias dexited=docker\ container\ ls\ -f\ 'status=exited'\ -f\ 'status=dead'\ -f\ 'status=created'
 alias dprune=docker\ system\ prune\ -af\ --volumes
+
+# git stuff
 alias add=git\ add
 alias commit=git\ commit
 alias checkout=git\ checkout
@@ -27,8 +29,13 @@ alias reset=git\ reset
 alias pop=git\ stash\ pop
 alias gs=git\ status
 alias co=git\ checkout
+alias pgd=git\ rev-parse\ --show-toplevel
+alias .cd="cd \$(git rev-parse --show-toplevel)"
+alias master=git\ checkout\ master
+alias develop=git\ checkout\ develop
 
 alias ..=cd\ ..
+alias .1=cd\ ..
 alias .2=cd\ ../..
 alias .3=cd\ ../../..
 alias .4=cd\ ../../../..
@@ -87,7 +94,8 @@ function rename-branch() {
   fi
 
   git push origin :$CURR_BRANCH $NEW_BRANCH
-  
-  # in case of the upstream unset message: https://stackoverflow.com/a/46521967/12075726
-} 
 
+  #git push origin --delete $CURR_BRANCH
+  #git push origin $NEW_BRANCH
+  git push origin -u $NEW_BRANCH
+} 
