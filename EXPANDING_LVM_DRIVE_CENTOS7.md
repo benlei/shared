@@ -2,20 +2,20 @@ This is just to list out what I had to do in order to expand my hard drive space
 
 1. Find out what device is the new hard drive. It should be "obvious" with the use of `lsblk`:
 
-  ```
-  $ lsblk
-  NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-  sda               8:0    0   2T  0 disk
-  └─sda1            8:1    0   2T  0 part
-    └─centos-home 253:2    0    4T  0 lvm  /home
-  sdb               8:16   0   2T  0 disk
-  sdc               8:32   0 8G  0 disk
-  └─sdc1            8:33   0 8G  0 part
-    ├─centos-root 253:0    0    50G  0 lvm  /
-    └─centos-home 253:2    0    4T  0 lvm  /home
-  ```
+   ```
+   $ lsblk
+   NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+   sda               8:0    0   2T  0 disk
+   └─sda1            8:1    0   2T  0 part
+     └─centos-home 253:2    0    4T  0 lvm  /home
+   sdb               8:16   0   2T  0 disk
+   sdc               8:32   0 8G  0 disk
+   └─sdc1            8:33   0 8G  0 part
+     ├─centos-root 253:0    0    50G  0 lvm  /
+     └─centos-home 253:2    0    4T  0 lvm  /home
+   ```
 
-  Note that `sdb` (`/dev/sdb`)  is the physical volume (PV) I'm trying to add + *has no partitions*. I can't remember the 'type' but it was probably `disk`.
+   Note that `sdb` (`/dev/sdb`)  is the physical volume (PV) I'm trying to add + *has no partitions*. I can't remember the 'type' but it was probably `disk`.
 
 2. Wipe the disk:
 
