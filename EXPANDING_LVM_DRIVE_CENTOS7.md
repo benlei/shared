@@ -20,7 +20,7 @@ This is just to list out what I had to do in order to expand my hard drive space
 2. Wipe the disk:
 
    ```
-   wipefs -a /dev/sdb
+   $ wipefs -a /dev/sdb
    ```
 
 3. Create the physical volume for use by VM:
