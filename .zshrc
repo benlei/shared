@@ -18,3 +18,15 @@ source ~/.zshrcx
 fpath+=("$ZSH_CUSTOM/themes/pure")
 autoload -U promptinit; promptinit
 prompt pure
+
+
+autoload -U edit-command-line
+
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
+
+# also fc
+
+# check more later at https://github.com/cypher/dotfiles
