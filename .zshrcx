@@ -13,6 +13,7 @@ alias d=docker
 alias dc=docker-compose
 alias dexited=docker\ container\ ls\ -f\ 'status=exited'\ -f\ 'status=dead'\ -f\ 'status=created'
 alias dprune=docker\ system\ prune\ -af\ --volumes
+alias tf=terraform
 
 # git stuff
 alias add=git\ add
