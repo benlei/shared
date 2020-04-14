@@ -69,21 +69,47 @@ function delete-branch() {
   git push origin --delete $1
 }
 
-function select-branch() {
+#function select-branch() {
+#  if [[ $1 == '-r' ]];
+#  then
+#    echo Fetching remote branches...
+#    branches=$(git branch -r | grep -v "origin/HEAD" | sed -e 's#^ *origin/##')
+#  else
+#    echo Fetching local branches...
+#    branches=$(git branch -l | sed 's#^[ \*]*##g')
+#  fi
+#
+#  select branch in `echo $branches`;
+#  do
+#    git checkout $branch
+#    break
+#  done
+#}
+
+function switch-branch() {
   if [[ $1 == '-r' ]];
   then
     echo Fetching remote branches...
-    branches=$(git branch -r | grep -v "origin/HEAD" | sed -e 's#^ *origin/##')
+    branches=$(git branch -r | grep -v "origin/HEAD" | sed -e 's#^ *origin/##' | grep $2)
   else
     echo Fetching local branches...
-    branches=$(git branch -l | sed 's#^[ \*]*##g')
+    branches=$(git branch -l | sed 's#^[ \*]*##g' | grep $1)
   fi
 
-  select branch in `echo $branches`;
-  do
-    git checkout $branch
-    break
-  done
+  count=$(echo -n "$branches" | grep -c '^')
+
+  if [ $count -eq 1 ];
+  then
+    git checkout $branches
+  else
+    echo "Found $count matching branches. Please manually switch to one of them:"
+    echo
+
+    for branch in `echo $branches`;
+    do
+      echo git checkout $branch
+    done
+  fi
 }
 
 function rename-branch() {
