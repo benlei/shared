@@ -11,7 +11,7 @@ alias .ssh=ssh\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
 
 alias d=docker
 alias dc=docker-compose
-alias dcu=docker-compose\ up\ --force-recreate\ -d\ --no-deps\ --build
+alias dcu=docker-compose\ up\ -d\ --no-deps\ --build
 alias dps=docker\ ps
 alias dcps=docker-compose\ ps
 alias dexited=docker\ container\ ls\ -f\ 'status=exited'\ -f\ 'status=dead'\ -f\ 'status=created'
