@@ -76,7 +76,7 @@ function select-branch() {
     branches=$(git branch -r | grep -v "origin/HEAD" | sed -e 's#^ *origin/##')
   else
     echo Fetching local branches...
-    branches=$(git branch -l | sed 's#^[ \*]*##g')
+    branches=$(git branch -l | grep -v 'HEAD detached at' | sed 's#^[ \*]*##g')
   fi
 
   select branch in `echo $branches`;
@@ -93,7 +93,7 @@ function switch-branch() {
     branches=$(git branch -r | grep -v "origin/HEAD" | sed -e 's#^ *origin/##' | grep $2)
   else
     echo Fetching local branches...
-    branches=$(git branch -l | sed 's#^[ \*]*##g' | grep $1)
+    branches=$(git branch -l | grep -v 'HEAD detached at' | sed 's#^[ \*]*##g' | grep $1)
   fi
 
   count=$(echo -n "$branches" | grep -c '^')
