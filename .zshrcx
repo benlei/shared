@@ -38,6 +38,8 @@ alias pgd=git\ rev-parse\ --show-toplevel
 alias .cd="cd \$(git rev-parse --show-toplevel)"
 alias master=git\ checkout\ master
 alias develop=git\ checkout\ develop
+alias reset-hard=git\ reset\ --hard\ HEAD
+alias force-reset="git stash -u && git stash drop"
 
 alias ..=cd\ ..
 alias .1=cd\ ..
@@ -51,6 +53,10 @@ alias guid="uuidgen | tr '[:upper:]' '[:lower:]' | sed 's/-//g'"
 alias .gb=./gradlew\ build
 alias .gcb=./gradlew\ clean\ build
 alias .g=./gradlew
+
+function dbash() {
+  docker exec -it $1 bash
+}
 
 function .nvm() {
   nvm install $1 && nvm alias default $1
@@ -79,7 +85,7 @@ function select-branch() {
     branches=$(git branch -r | grep -v "origin/HEAD" | sed -e 's#^ *origin/##')
   else
     echo Fetching local branches...
-    branches=$(git branch -l | sed 's#^[ \*]*##g')
+    branches=$(git branch -l | grep -v 'HEAD detached at' | sed 's#^[ \*]*##g')
   fi
 
   select branch in `echo $branches`;
@@ -96,7 +102,7 @@ function switch-branch() {
     branches=$(git branch -r | grep -v "origin/HEAD" | sed -e 's#^ *origin/##' | grep $2)
   else
     echo Fetching local branches...
-    branches=$(git branch -l | sed 's#^[ \*]*##g' | grep $1)
+    branches=$(git branch -l | grep -v 'HEAD detached at' | sed 's#^[ \*]*##g' | grep $1)
   fi
 
   count=$(echo -n "$branches" | grep -c '^')
