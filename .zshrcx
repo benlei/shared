@@ -138,3 +138,7 @@ function rename-branch() {
   #git push origin $NEW_BRANCH
   git push origin -u $NEW_BRANCH
 } 
+
+function cat.env() {
+    sed  's/#.*//' $1 | awk 'NF' | awk '{$1=$1;print}'
+}
