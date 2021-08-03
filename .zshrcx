@@ -26,6 +26,8 @@ alias pull=git\ pull
 alias push=git\ push
 alias p=pull
 alias g=git\ status
+alias pd=git\ pull\ origin\ develop
+alias pm=git\ pull\ origin\ master
 alias branch=git\ branch
 alias stash=git\ stash
 alias merge=git\ merge
@@ -138,3 +140,7 @@ function rename-branch() {
   #git push origin $NEW_BRANCH
   git push origin -u $NEW_BRANCH
 } 
+
+function cat.env() {
+    sed  's/#.*//' $1 | awk 'NF' | awk '{$1=$1;print}'
+}
