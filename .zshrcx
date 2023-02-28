@@ -8,6 +8,7 @@ alias egrep=egrep\ --color=auto
 alias fgrep=fgrep\ --color=auto
 alias .scp=scp\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
 alias .ssh=ssh\ -oStrictHostKeyChecking=no\ -oUserKnownHostsFile=/dev/null
+alias ghist="history | grep"
 
 alias d=docker
 alias dc=docker-compose
