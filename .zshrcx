@@ -82,6 +82,17 @@ function create-branch() {
 }
 
 function delete-branch() {
+  # Prompt the user for confirmation
+  read -p "Are you sure you want to DELETE $1? (y/n): " response
+  sleep 5
+
+  # Check the response
+  if [[ $response =~ ^[Yy]$ ]]; then
+    echo "Proceeding..."
+  else
+    echo "Operation canceled."
+    exit 0
+  fi
   git branch -d $1
   git push origin --delete $1
 }
@@ -135,10 +146,34 @@ function rename-branch() {
   if [[ $# -eq 2 ]]; then
     CURR_BRANCH=$1
     NEW_BRANCH=$2
+
+    # Prompt the user for confirmation
+    read -p "Are you sure you want to RENAME $CURR_BRANCH to $NEW_BRANCH? (y/n): " response
+    sleep 5
+
+    # Check the response
+    if [[ $response =~ ^[Yy]$ ]]; then
+      echo "Proceeding..."
+    else
+      echo "Operation canceled."
+      exit 0
+    fi
     git branch -m $1 $2
   else
+    # Prompt the user for confirmation
+    read -p "Are you sure you want to RENAME $CURR_BRANCH to $NEW_BRANCH? (y/n): " response
+    sleep 5
+
+    # Check the response
+    if [[ $response =~ ^[Yy]$ ]]; then
+      echo "Proceeding..."
+    else
+      echo "Operation canceled."
+      exit 0
+    fi
     git branch -m $1
   fi
+
 
   git push origin :$CURR_BRANCH $NEW_BRANCH
 
