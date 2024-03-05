@@ -83,7 +83,8 @@ function create-branch() {
 
 function delete-branch() {
   # Prompt the user for confirmation
-  read -p "Are you sure you want to DELETE $1? (y/n): " response
+  echo "Are you sure you want to DELETE $1? (y/n): "
+  read response
   sleep 5
 
   # Check the response
@@ -148,7 +149,8 @@ function rename-branch() {
     NEW_BRANCH=$2
 
     # Prompt the user for confirmation
-    read -p "Are you sure you want to RENAME $CURR_BRANCH to $NEW_BRANCH? (y/n): " response
+    echo "Are you sure you want to RENAME $CURR_BRANCH to $NEW_BRANCH? (y/n): " 
+    read response
     sleep 5
 
     # Check the response
@@ -161,7 +163,8 @@ function rename-branch() {
     git branch -m $1 $2
   else
     # Prompt the user for confirmation
-    read -p "Are you sure you want to RENAME $CURR_BRANCH to $NEW_BRANCH? (y/n): " response
+    echo "Are you sure you want to RENAME $CURR_BRANCH to $NEW_BRANCH? (y/n): "
+    read response
     sleep 5
 
     # Check the response
